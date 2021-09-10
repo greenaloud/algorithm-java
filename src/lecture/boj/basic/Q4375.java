@@ -1,17 +1,24 @@
-package boj;
+package lecture.boj.basic;
 
 import java.io.*;
 
-public class Q10952 {
+public class Q4375 {
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         String s;
         while ((s = br.readLine()) != null) {
-            int x = Integer.parseInt(s.substring(0, 1));
-            int y = Integer.parseInt(s.substring(2));
-            bw.write((x+y) + "\n");
+            int target = Integer.parseInt(s);
+            int rem = 1 % target;
+            int i;
+            for (i = 1; i < target; i++) {
+                if (rem == 0) break;
+                rem = (rem * 10 + 1) % target;
+            }
+            bw.write(i + "\n");
         }
         bw.flush();
         br.close();
