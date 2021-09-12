@@ -4,12 +4,11 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Q15654 {
+public class Q15655 {
 
     static int n, m;
     static int[] arr;
     static int[] result;
-    static boolean[] visit;
     static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
@@ -22,7 +21,6 @@ public class Q15654 {
         result = new int[m];
         Arrays.fill(result, ' ');
 
-        visit = new boolean[n];
         arr = new int[n];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
@@ -31,12 +29,12 @@ public class Q15654 {
         Arrays.sort(arr);
 
         sb = new StringBuilder();
-        permute(0);
+        permute(0, 0);
 
         System.out.println(sb);
     }
 
-    private static void permute(int depth) {
+    private static void permute(int idx, int depth) {
         if (depth == m) {
             for (int i : result) {
                 sb.append(i).append(" ");
@@ -44,12 +42,9 @@ public class Q15654 {
             sb.append("\n");
             return;
         }
-        for (int i = 0; i < n; i++) {
-            if (visit[i]) continue;
+        for (int i = idx; i < n; i++) {
             result[depth] = arr[i];
-            visit[i] = true;
-            permute(depth + 1);
-            visit[i] = false;
+            permute(i + 1, depth + 1);
         }
     }
 
